@@ -4,11 +4,15 @@ MAINTAINER  perl5 drd.trif@gmail.com
 RUN curl -L http://cpanmin.us | perl - App::cpanminus
 
 
+RUN apt-get update
 
+Run apt-get install libvpx-dev
+Run apt-get install libxpm-dev
+Run apt-get install -f libgd-dev
 RUN cpanm --force Carton Starman
 
 
-RUN cachebuster=b953b35 git clone -b pb_on_docker --single-branch https://github.com/DragosTrif/PearlBee.git
+RUN cachebuster=b953b35 git clone -b dockerising_pearlbee --single-branch https://github.com/DragosTrif/PearlBee.git
 RUN cd PearlBee && carton install  && carton install --deployment 
 
 

@@ -43,17 +43,15 @@ plugins:
         # Toggle comments when switching between postgres and mysql
         default:
           schema_class: PearlBee::Model::Schema
-<<<<<<< HEAD
           #dsn: dbi:mysql:PearlBee
           #user: root
           #pass: mysqlpassword
           dsn: dbi:Pg:dbname=pearlbee
           user: pearlbee_user
-          password: password
-=======
+          password: passwor
           user: root
           pass: 1 #mysqlpassword
->>>>>>> 25251428cdd2f23ddd0d2f92009ba7f996d89548
+
           options:
             RaiseError: 1
             PrintError: 1
