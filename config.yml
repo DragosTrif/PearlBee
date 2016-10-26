@@ -48,10 +48,7 @@ plugins:
           #pass: mysqlpassword
           dsn: dbi:Pg:dbname=pearlbee
           user: pearlbee_user
-          password: passwor
-          user: root
-          pass: 1 #mysqlpassword
-
+          password: password
           options:
             RaiseError: 1
             PrintError: 1
