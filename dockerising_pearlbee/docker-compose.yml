@@ -5,9 +5,15 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf 
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./public:/usr/share/nginx/public
+       
   pearlbee:
     build: pearlbee
+    #volumes:
+      #- 
+    #ports:
+     # - "5000:5000"
     command: carton exec  starman   bin/app.psgi 
     environment:
       - MYSQL_PASSWORD=secret
