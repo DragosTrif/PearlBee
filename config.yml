@@ -16,7 +16,7 @@ charset: "UTF-8"
 
 # This should be users if you are using postgres, otherwise leave it
 # at user for MySQL
-user_table: users
+user_table: user
 
 # template engine
 # simple: default and very basic template engine
