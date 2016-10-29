@@ -24,6 +24,8 @@ requires 'MIME::Base64';
 requires 'Gravatar::URL';
 requires 'HTML::Strip';
 requires 'Template::Plugin::HTML::Strip';
+requires 'DBD::mysql', '4.036';
+requires 'DateTime::Format::MySQL';
 
 requires 'Plack', '1.0000';
 requires 'Template', '2.26';
