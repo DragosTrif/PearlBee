@@ -37,9 +37,10 @@ post '/login' => sub {
     })->first;
   warn  $user->username;
   warn $user->password;
-  my $password_hash = generate_hash($password, $user->salt) if $user;
   
-  if ( $user && $user->password eq $password_hash->{hash} ) {
+  #my $password_hash = generate_hash($password, $user->salt) if $user;
+  
+  if ( $user && $user->password eq validate($password) ) {
     
     my $user_obj->{is_admin} = $user->is_admin;
     $user_obj->{role}        = $user->role;
