@@ -48,7 +48,7 @@ plugins:
           password: secret
           #dsn: dbi:Pg:dbname=pearlbee
           #user: pearlbee_user
-          password: password
+          #password: password
           options:
             RaiseError: 1
             PrintError: 1

@@ -26,7 +26,8 @@ login method
 post '/login' => sub {
   my $password = params->{password};
   my $username = params->{username};
-  
+  warn "The pass is :|$password|\n";
+  warn "The user is :|$username|\n";
   my $user = resultset("User")->search({
       username => $username,
       -or => [
@@ -34,8 +35,11 @@ post '/login' => sub {
       	status => 'deactivated'
       ]
     })->first;
+  warn  $user->username;
+  warn $user->password;
+  my $password_hash = generate_hash($password, $user->salt) if $user;
   
-  if ( $user and $user->validate($password) ) {
+  if ( $user && $user->password eq $password_hash->{hash} ) {
     
     my $user_obj->{is_admin} = $user->is_admin;
     $user_obj->{role}        = $user->role;
