@@ -3,6 +3,7 @@ package PearlBee::Authentication;
 use Dancer2;
 use Dancer2::Plugin::DBIC;
 use PearlBee::Password;
+use PearlBee::Model::Schema::Result::User;
 
 =head
 
