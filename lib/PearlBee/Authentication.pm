@@ -2,8 +2,9 @@ package PearlBee::Authentication;
 
 use Dancer2;
 use Dancer2::Plugin::DBIC;
-use PearlBee::Password;
-use PearlBee::Model::Schema::Result::User;
+use PearlBee::Password 'generate_hash';
+#use PearlBee 'PearlBee';
+#use PearlBee::Model::Schema::Result::User 'validate';
 
 =head
 
@@ -27,8 +28,8 @@ login method
 post '/login' => sub {
   my $password = params->{password};
   my $username = params->{username};
-  warn "The pass is :|$password|\n";
-  warn "The user is :|$username|\n";
+  #warn "The pass is :|$password|\n";
+  #warn "The user is :|$username|\n";
   my $user = resultset("User")->search({
       username => $username,
       -or => [
@@ -36,12 +37,20 @@ post '/login' => sub {
       	status => 'deactivated'
       ]
     })->first;
-  warn  $user->username;
-  warn $user->password;
+  #warn "This are dbi data";
+  #my $name_value = $user->username;
+  #warn  "The name is $name_value\n";
+  #my $passowrd_value = $user->password;
+  #warn "The passowrd is $passowrd_value\n";
+  #my $salt_value = $user->salt;
+  #warn "The salt is $salt_value\n";
   
-  #my $password_hash = generate_hash($password, $user->salt) if $user;
   
-  if ( $user && $user->password eq validate($password) ) {
+  my $password_hash = generate_hash($password, $user->salt ) if $user;
+  
+  
+  
+  if ( $user && $user->password eq $password_hash->{hash} ) {
     
     my $user_obj->{is_admin} = $user->is_admin;
     $user_obj->{role}        = $user->role;

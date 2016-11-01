@@ -16,6 +16,7 @@ sub generate_hash {
 	
 	my $password = shift;
 	my $salt = decode_base64(shift);
+	warn "The decoded salt is $salt";
 	my $hashref = {};
 	$salt = rand_bits(128) unless $salt;
 
@@ -29,5 +30,7 @@ sub generate_hash {
 	
 	return $hashref;
 }
+
+
 
 1;

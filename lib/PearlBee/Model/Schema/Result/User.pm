@@ -15,6 +15,9 @@ use warnings;
 use base 'DBIx::Class::Core';
 
 use Dancer2;
+use Digest::Bcrypt;
+use Data::Entropy::Algorithms qw(rand_bits);
+use MIME::Base64 qw(encode_base64 decode_base64);
 
 =head1 TABLE: C<user>
 
@@ -141,6 +144,10 @@ __PACKAGE__->add_columns(
     extra => { list => ["deactivated", "activated", "suspended", "pending"] },
     is_nullable => 0,
   },
+   "salt",
+   {
+     data_type => "char", is_nullable => 0, size => 24,
+   },
 );
 
 =head1 PRIMARY KEY
@@ -330,10 +337,16 @@ Validate a user's password
 
 =cut
 
+#this is shit 
+
 sub validate {
   my ($self, $password) = @_;
-
+  warn $self;
+  warn $password;
+  warn $self->password;
+  
   my $hashed = crypt( $password, $self->password );
+  warn $hashed->salt;
 
   return $self->password eq $hashed;
 }
