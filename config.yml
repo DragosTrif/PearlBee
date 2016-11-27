@@ -43,7 +43,7 @@ plugins:
         # Toggle comments when switching between postgres and mysql
         default:
           schema_class: PearlBee::Model::Schema
-          dsn: dbi:mysql:PearlBee;host=mysql;port=3306
+          dsn: dbi:mysql:PearlBee;host= 127.0.1.1;port=3306
           user: root
           password: 1
           #dsn: dbi:Pg:dbname=pearlbee
